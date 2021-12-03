@@ -25,13 +25,26 @@ defmodule AdventOfCode.Day01 do
   """
 
   @doc """
-  Count the number of times the
+  Count the number of times the depth increases
   """
-  def part1(args) do
-    args
+  def part1(input) do
+    input
+    |> String.split("\n")
+    |> Enum.map(&String.to_integer/1)
+    |> Enum.chunk_every(2, 1, :discard)
+    |> Enum.count(fn [prev, curr] -> curr > prev end)
   end
 
-  def part2(args) do
-    args
+  @doc """
+  Count the number of times a three-number sliding window increases
+  """
+  def part2(input) do
+    input
+    |> String.split("\n")
+    |> Enum.map(&String.to_integer/1)
+    |> Enum.chunk_every(3, 1, :discard)
+    |> Enum.map(&Enum.sum/1)
+    |> Enum.chunk_every(2, 1, :discard)
+    |> Enum.count(fn [prev, curr] -> curr > prev end)
   end
 end
