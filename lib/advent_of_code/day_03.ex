@@ -5,7 +5,7 @@ defmodule AdventOfCode.Day03 do
       |> String.trim()
       |> String.split()
       |> Enum.map(&String.graphemes/1)
-      |> List.zip
+      |> List.zip()
       |> Enum.map(&gamma/1)
 
     epsilon_binary = gamma_to_epsilon(gamma_binary)
@@ -29,7 +29,10 @@ defmodule AdventOfCode.Day03 do
   end
 
   defp gamma_to_epsilon(gamma) do
-    Enum.map(gamma, fn 1 -> 0; 0 -> 1 end)
+    Enum.map(gamma, fn
+      1 -> 0
+      0 -> 1
+    end)
   end
 
   def part2(input) do
@@ -46,6 +49,7 @@ defmodule AdventOfCode.Day03 do
   end
 
   defp o2(items, index \\ 0)
+
   defp o2([result], _) do
     result
     |> Enum.map(&String.to_integer/1)
@@ -57,9 +61,9 @@ defmodule AdventOfCode.Day03 do
       items
       |> transpose()
       |> Enum.at(index)
-      |> Enum.frequencies
+      |> Enum.frequencies()
       |> Map.to_list()
-      |> Enum.sort_by(&elem(&1,1), & &1 > &2)
+      |> Enum.sort_by(&elem(&1, 1), &(&1 > &2))
       |> List.first()
       |> elem(0)
 
@@ -69,6 +73,7 @@ defmodule AdventOfCode.Day03 do
   end
 
   defp co2(items, index \\ 0)
+
   defp co2([result], _) do
     result
     |> Enum.map(&String.to_integer/1)
@@ -80,9 +85,9 @@ defmodule AdventOfCode.Day03 do
       items
       |> transpose()
       |> Enum.at(index)
-      |> Enum.frequencies
+      |> Enum.frequencies()
       |> Map.to_list()
-      |> Enum.sort_by(&elem(&1,1), & &1 <= &2)
+      |> Enum.sort_by(&elem(&1, 1), &(&1 <= &2))
       |> List.first()
       |> elem(0)
 

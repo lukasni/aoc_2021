@@ -20,9 +20,10 @@ defmodule AdventOfCode.Day04 do
       boards
       |> Enum.map(&BingoBoard.mark(&1, number))
 
-    case Enum.find(new_boards, &(&1.win)) do
+    case Enum.find(new_boards, & &1.win) do
       nil ->
         {:cont, new_boards}
+
       board ->
         {:halt, BingoBoard.score(board) * number}
     end
@@ -50,8 +51,9 @@ defmodule AdventOfCode.Day04 do
     case new_boards do
       [%{win: true} = board] ->
         {:halt, number * BingoBoard.score(board)}
+
       new_boards ->
-        {:cont, Enum.reject(new_boards, &(&1.win))}
+        {:cont, Enum.reject(new_boards, & &1.win)}
     end
   end
 
@@ -81,6 +83,7 @@ defmodule AdventOfCode.Day04 do
         case num do
           ^number ->
             {num, :marked}
+
           _ ->
             {num, is_marked?}
         end
@@ -125,6 +128,7 @@ defmodule AdventOfCode.Day04 do
         case is_marked? do
           :unmarked ->
             acc + num
+
           :marked ->
             acc
         end

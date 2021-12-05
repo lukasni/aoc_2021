@@ -18,7 +18,7 @@ defmodule AdventOfCode.Day02 do
     |> String.trim()
     |> String.split("\n")
     |> Enum.map(&parse_instruction/1)
-    |> Enum.reduce({0,0}, &execute_instruction/2)
+    |> Enum.reduce({0, 0}, &execute_instruction/2)
     |> Tuple.product()
   end
 
@@ -27,7 +27,7 @@ defmodule AdventOfCode.Day02 do
     |> String.trim()
     |> String.split("\n")
     |> Enum.map(&parse_instruction/1)
-    |> Enum.reduce({0,0,0}, &execute_instruction_2/2)
+    |> Enum.reduce({0, 0, 0}, &execute_instruction_2/2)
     |> Tuple.delete_at(2)
     |> Tuple.product()
   end
@@ -41,26 +41,26 @@ defmodule AdventOfCode.Day02 do
   defp execute_instruction({direction, magnitude}, {position, depth}) do
     case direction do
       :forward ->
-        {position+magnitude, depth}
+        {position + magnitude, depth}
 
       :up ->
-        {position, depth-magnitude}
+        {position, depth - magnitude}
 
       :down ->
-        {position, depth+magnitude}
+        {position, depth + magnitude}
     end
   end
 
   defp execute_instruction_2({direction, magnitude}, {position, depth, aim}) do
     case direction do
       :forward ->
-        {position+magnitude, depth+(aim*magnitude), aim}
+        {position + magnitude, depth + aim * magnitude, aim}
 
       :up ->
-        {position, depth, aim-magnitude}
+        {position, depth, aim - magnitude}
 
       :down ->
-        {position, depth, aim+magnitude}
+        {position, depth, aim + magnitude}
     end
   end
 end
