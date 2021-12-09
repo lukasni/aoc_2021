@@ -39,10 +39,10 @@ defmodule AdventOfCode.Day07 do
   end
 
   defp calculate_fuel_1(origin, destination) do
-    abs(destination-origin)
+    abs(destination - origin)
   end
 
   defp calculate_fuel_2(origin, destination) do
-    1..abs(destination-origin) |> Enum.sum()
+    1..abs(destination - origin) |> Enum.sum()
   end
 end
