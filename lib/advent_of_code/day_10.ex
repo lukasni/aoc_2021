@@ -9,7 +9,7 @@ defmodule AdventOfCode.Day10 do
   def part2(input) do
     input
     |> parse()
-    |> Enum.reject(&score_line(&1) > 0)
+    |> Enum.reject(&(score_line(&1) > 0))
     |> Enum.map(&autocomplete/1)
     |> median()
   end
@@ -64,7 +64,8 @@ defmodule AdventOfCode.Day10 do
   defp autocomplete(line) do
     line
     |> Enum.reduce([], fn
-      char, [] -> [char]
+      char, [] ->
+        [char]
 
       character, [last | rest] = stack ->
         cond do
